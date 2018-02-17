@@ -1,0 +1,40 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+   <label> Assigned User </label>
+   <select>
+     <%= Enum.map @users, fn user -> %>
+   <option value=<%= user.name %>><%= user.name %></option>
+   <% end %>
+ </select>
+   <!--<%= select f, :user_id,  class: "form-control" %>-->
+     <!--<select id=":user_id" name="task[user_id]">
+   <option value= "1">chandhini</option>
+   <option value= "1">RAm</option>
+ </select> -->
+   <!--<%= text_input f, :user_id, class: "form-control" %>-->
+   <%= error_tag f, :user_id %>
+ </div>
+
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :body, class: "control-label" %>
+    <%= textarea f, :body, class: "form-control" %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

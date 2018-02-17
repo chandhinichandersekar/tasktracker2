@@ -1,0 +1,16 @@
+<h1>Tasks</h1>
+
+<%= Enum.map @tasks, fn task -> %>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Assigned User: <%= task.user.name %></h6>
+        <p> Tile: <%= task.title %></p>
+        <p>Description: <%= task.body %></p>
+        <span><%= link "Edit", to: task_path(@conn, :edit, task) %></span>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

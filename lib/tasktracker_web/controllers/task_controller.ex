@@ -10,12 +10,11 @@ defmodule TasktrackerWeb.TaskController do
   end
 
   def new(conn, _params) do
-    changeset = Social.change_task(%Task{})
+    #changeset = Social.change_task(%Task{})
+    changeset = Tasktracker.Social.change_task(%Tasktracker.Social.Task{user_id: conn.assigns[:current_user].id})
     assigned = Tasktracker.Accounts.list_users()
                |> Enum.map(&[&1.name])
                |> Enum.concat()
-    IO.inspect "assigned"
-    IO.inspect assigned
     render(conn, "new.html", changeset: changeset, assigned: assigned)
   end
 
@@ -41,12 +40,17 @@ defmodule TasktrackerWeb.TaskController do
                |> Enum.map(&[&1.name])
                |> Enum.concat()
     changeset = Social.change_task(task)
+
     render(conn, "edit.html", task: task, changeset: changeset, assigned: assigned)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Social.get_task!(id)
-
+    #time = Map.get(task, :time)
+    #newTime = %{"time" => time + 15}
+    #task_params = Map.merge(task_params, newTime)
+    #IO.inspect "time"
+    #IO.inspect task_params
     case Social.update_task(task, task_params) do
       {:ok, task} ->
         conn
@@ -56,6 +60,7 @@ defmodule TasktrackerWeb.TaskController do
         render(conn, "edit.html", task: task, changeset: changeset)
     end
   end
+
 
   def delete(conn, %{"id" => id}) do
     task = Social.get_task!(id)

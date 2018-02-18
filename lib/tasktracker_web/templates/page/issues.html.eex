@@ -1,16 +1,20 @@
-<h1>Issues</h1>
+<h1>Task Feed</h1>
 
 <%= Enum.map @tasks, fn task -> %>
 <div class="row">
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">User: <%= task.user.name %></h6>
+        <h6 class="card-title">Created by: <%= task.user.name %></h6>
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.assigned %></p>
-        <p>Time spent: <%= task.time %></p>
-        <p>Completed: <%= task.completed %></p>
+        <p>Time spent: <%= task.time %> minutes</p>
+        <%= if task.completed do %>
+        <p>Task status: This task is now complete</p>
+        <% else %>
+        <p>Task status: This task is in progress</p>
+        <% end %>
         <span><%= link "Edit", to: task_path(@conn, :edit, task) %></span>
       </div>
     </div>

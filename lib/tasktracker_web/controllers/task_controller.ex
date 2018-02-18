@@ -18,7 +18,7 @@ defmodule TasktrackerWeb.TaskController do
 
   def create(conn, %{"task" => task_params}) do
     case Social.create_task(task_params) do
-      {:ok} ->
+      {:ok, task} ->
         conn
         |> put_flash(:info, "Task created successfully.")
         |> redirect(to: "/issues")

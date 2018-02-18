@@ -5,6 +5,9 @@
     <tr>
       <th>Title</th>
       <th>Body</th>
+      <th>Assigned</th>
+      <th>Time</th>
+      <th>Completed</th>
 
       <th></th>
     </tr>
@@ -14,6 +17,9 @@
     <tr>
       <td><%= task.title %></td>
       <td><%= task.body %></td>
+      <td><%= task.assigned %></td>
+      <td><%= task.time %></td>
+      <td><%= task.completed %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>

@@ -2,10 +2,9 @@
 
 <ul>
   <li>
-  <strong>Assigned User: </strong>
-  <%= @task.user.name %>
- </li>
-
+    <strong>User:</strong>
+    <%= @task.user.name %>
+  </li>
 
   <li>
     <strong>Title:</strong>
@@ -17,6 +16,20 @@
     <%= @task.body %>
   </li>
 
+  <li>
+    <strong>Assigned:</strong>
+    <%= @task.assigned %>
+  </li>
+
+  <li>
+    <strong>Time:</strong>
+    <%= @task.time %>
+  </li>
+
+  <li>
+    <strong>Completed:</strong>
+    <%= @task.completed %>
+  </li>
 
 </ul>
 

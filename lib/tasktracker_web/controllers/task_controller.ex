@@ -6,14 +6,17 @@ defmodule TasktrackerWeb.TaskController do
 
   def index(conn, _params) do
     tasks = Social.list_tasks()
-    users = Tasktracker.Accounts.list_users()
-    render(conn, "index.html", tasks: tasks, users: users)
+    render(conn, "index.html", tasks: tasks)
   end
 
   def new(conn, _params) do
     changeset = Social.change_task(%Task{})
-    users = Tasktracker.Accounts.list_users()
-    render(conn, "new.html", changeset: changeset, users: users)
+    assigned = Tasktracker.Accounts.list_users()
+               |> Enum.map(&[&1.name])
+               |> Enum.concat()
+    IO.inspect "assigned"
+    IO.inspect assigned
+    render(conn, "new.html", changeset: changeset, assigned: assigned)
   end
 
   def create(conn, %{"task" => task_params}) do
@@ -34,21 +37,23 @@ defmodule TasktrackerWeb.TaskController do
 
   def edit(conn, %{"id" => id}) do
     task = Social.get_task!(id)
-    users = Tasktracker.Accounts.list_users()
+    assigned = Tasktracker.Accounts.list_users()
+               |> Enum.map(&[&1.name])
+               |> Enum.concat()
     changeset = Social.change_task(task)
-    render(conn, "edit.html", task: task, changeset: changeset, users: users)
+    render(conn, "edit.html", task: task, changeset: changeset, assigned: assigned)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Social.get_task!(id)
-    users = Tasktracker.Accounts.list_users()
+
     case Social.update_task(task, task_params) do
       {:ok, task} ->
         conn
         |> put_flash(:info, "Task updated successfully.")
         |> redirect(to: task_path(conn, :show, task))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", task: task, changeset: changeset, users: users)
+        render(conn, "edit.html", task: task, changeset: changeset)
     end
   end
 

@@ -18,10 +18,9 @@ defmodule Tasktracker.Social do
 
   """
   def list_tasks do
-   Repo.all(Task)
+    Repo.all(Task)
    |> Repo.preload(:user)
- end
-
+  end
 
   @doc """
   Gets a single task.
@@ -37,7 +36,6 @@ defmodule Tasktracker.Social do
       ** (Ecto.NoResultsError)
 
   """
-  #def get_task!(id), do: Repo.get!(Task, id)
   def get_task!(id) do
     Repo.get!(Task, id)
     |> Repo.preload(:user)
@@ -75,7 +73,6 @@ defmodule Tasktracker.Social do
   """
   def update_task(%Task{} = task, attrs) do
     task
-    |> Repo.preload(:user)
     |> Task.changeset(attrs)
     |> Repo.update()
   end

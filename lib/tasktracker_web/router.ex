@@ -11,15 +11,15 @@ defmodule TasktrackerWeb.Router do
   end
 
   def get_current_user(conn, _params) do
-    # TODO: Move this function out of the router module.
-    user_id = get_session(conn, :user_id)
-    if user_id do
-    user = Tasktracker.Accounts.get_user!(user_id)
-    assign(conn, :current_user, user)
+      # TODO: Move this function out of the router module.
+      user_id = get_session(conn, :user_id)
+      if user_id do
+        user = Tasktracker.Accounts.get_user!(user_id)
+        assign(conn, :current_user, user)
   else
-    assign(conn, :current_user, nil)
+      assign(conn, :current_user, nil)
   end
-  end
+    end
 
   pipeline :api do
     plug :accepts, ["json"]

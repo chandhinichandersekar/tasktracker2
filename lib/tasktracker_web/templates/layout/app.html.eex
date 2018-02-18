@@ -13,20 +13,21 @@
 
   <body>
     <div class="container">
+
       <div class="row">
-        <div class="col-9 offset-9">
-          <%= if @current_user do %>
-            <p>
-              <span><%= link "NewTask", to: "/tasks/new" %></span> 
+       <div class="col-9 offset-9">
+         <%= if @current_user do %>
+           <p>
+             <span><%= link "NewTask", to: "/tasks/new" %></span>
               <span><%= link "Feed", to: "/issues" %></span> <br>
-              Logged in as: <%= @current_user.name %> |
-              <%= link "Log Out", to: "/session", method: :delete %>
-            </p>
-          <% else %>
-            <p>Not logged in.</p>
-          <% end %>
-        </div>
-      </div>
+             Logged in as: <%= @current_user.name %> |
+             <%= link "Log Out", to: "/session", method: :delete %>
+           </p>
+         <% else %>
+           <p>Not logged in.</p>
+         <% end %>
+       </div>
+     </div>
 
       <%= if get_flash(@conn, :info) do %>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

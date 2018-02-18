@@ -3,9 +3,9 @@ defmodule TasktrackerWeb.TaskControllerTest do
 
   alias Tasktracker.Social
 
-  @create_attrs %{body: "some body", title: "some title"}
-  @update_attrs %{body: "some updated body", title: "some updated title"}
-  @invalid_attrs %{body: nil, title: nil}
+  @create_attrs %{assigned: "some assigned", body: "some body", completed: true, time: 42, title: "some title"}
+  @update_attrs %{assigned: "some updated assigned", body: "some updated body", completed: false, time: 43, title: "some updated title"}
+  @invalid_attrs %{assigned: nil, body: nil, completed: nil, time: nil, title: nil}
 
   def fixture(:task) do
     {:ok, task} = Social.create_task(@create_attrs)
@@ -60,7 +60,7 @@ defmodule TasktrackerWeb.TaskControllerTest do
       assert redirected_to(conn) == task_path(conn, :show, task)
 
       conn = get conn, task_path(conn, :show, task)
-      assert html_response(conn, 200) =~ "some updated body"
+      assert html_response(conn, 200) =~ "some updated assigned"
     end
 
     test "renders errors when data is invalid", %{conn: conn, task: task} do

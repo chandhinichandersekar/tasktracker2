@@ -18,7 +18,7 @@
        <div class="col-9 offset-9">
          <%= if @current_user do %>
            <p>
-             <span><%= link "NewTask", to: "/tasks/new" %></span>
+             <span><%= link "NewTask", to: "/tasks/new" %></span> | 
               <span><%= link "Feed", to: "/issues" %></span> <br>
              Logged in as: <%= @current_user.name %> |
              <%= link "Log Out", to: "/session", method: :delete %>

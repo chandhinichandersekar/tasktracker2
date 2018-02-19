@@ -9,7 +9,7 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.assigned %></p>
-        <p class= "float-right">Time spent: <%= task.time %> minutes</p>
+        <p class= "text-danger float-right">Time spent: <%= task.time %> minutes</p>
         <%= if task.completed do %>
         <p class="text-success">  Task status: Complete </p>
         <% else %>

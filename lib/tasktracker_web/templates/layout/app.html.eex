@@ -13,7 +13,7 @@
 
   <body>
     <div class="container">
-
+      <!--Referred from professor Nat Tuck's class and lecture notes -->
       <div class="row">
        <div class="col-9 offset-9">
          <%= if @current_user do %>

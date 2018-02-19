@@ -20,6 +20,6 @@ defmodule Tasktracker.Social.Task do
   def changeset(%Task{} = task, attrs) do
     task
     |> cast(attrs, [:title, :body, :assigned, :time, :completed, :user_id])
-    |> validate_required([:title, :body, :assigned, :completed, :user_id])
+    |> validate_required([:title, :body, :assigned, :time, :completed, :user_id])
   end
 end

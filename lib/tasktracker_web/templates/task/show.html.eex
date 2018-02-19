@@ -1,4 +1,4 @@
-<h2>Show Task</h2>
+<h2>Task Details</h2>
 
 <ul>
   <li>
@@ -12,22 +12,22 @@
   </li>
 
   <li>
-    <strong>Body:</strong>
+    <strong>Description:</strong>
     <%= @task.body %>
   </li>
 
   <li>
-    <strong>Assigned:</strong>
+    <strong>Assigned to:</strong>
     <%= @task.assigned %>
   </li>
 
   <li>
-    <strong>Time:</strong>
+    <strong>Time spent:</strong>
     <%= @task.time %> minutes
   </li>
 
   <li>
-    <strong>Completed:</strong>
+    <strong>Task status:</strong>
       <%= if @task.completed do %>
       Complete
       <% else %>

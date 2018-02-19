@@ -2,7 +2,7 @@ defmodule TasktrackerWeb.TaskController do
   use TasktrackerWeb, :controller
 
   alias Tasktracker.Social
-  alias Tasktracker.Social.Task
+
 
   def index(conn, _params) do
     tasks = Social.list_tasks()
@@ -10,8 +10,9 @@ defmodule TasktrackerWeb.TaskController do
   end
 
   def new(conn, _params) do
-    #changeset = Social.change_task(%Task{})
     changeset = Tasktracker.Social.change_task(%Tasktracker.Social.Task{user_id: conn.assigns[:current_user].id})
+    #learnt the usage of select tag from (https://stackoverflow.com/questions/36698192/how-to-create-a-select-tag-with-options-and-values-from-a-separate-model-in-the)
+    #and applied it in task tracker app accordingly
     assigned = Tasktracker.Accounts.list_users()
                |> Enum.map(&[&1.name])
                |> Enum.concat()
@@ -46,11 +47,6 @@ defmodule TasktrackerWeb.TaskController do
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Social.get_task!(id)
-    #time = Map.get(task, :time)
-    #newTime = %{"time" => time + 15}
-    #task_params = Map.merge(task_params, newTime)
-    #IO.inspect "time"
-    #IO.inspect task_params
     case Social.update_task(task, task_params) do
       {:ok, task} ->
         conn

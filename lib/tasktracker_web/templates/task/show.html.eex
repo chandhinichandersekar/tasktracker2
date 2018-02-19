@@ -2,7 +2,7 @@
 
 <ul>
   <li>
-    <strong>User:</strong>
+    <strong>Created by:</strong>
     <%= @task.user.name %>
   </li>
 
@@ -23,12 +23,16 @@
 
   <li>
     <strong>Time:</strong>
-    <%= @task.time %>
+    <%= @task.time %> minutes
   </li>
 
   <li>
     <strong>Completed:</strong>
-    <%= @task.completed %>
+      <%= if @task.completed do %>
+      Complete
+      <% else %>
+      In progress
+      <% end %>
   </li>
 
 </ul>

@@ -9,15 +9,16 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.assigned %></p>
-        <p>Time spent: <%= task.time %> minutes</p>
+        <p class= "float-right">Time spent: <%= task.time %> minutes</p>
         <%= if task.completed do %>
-        <p>Task status: This task is now complete</p>
+        <p class="text-success">  Task status: Complete </p>
         <% else %>
-        <p>Task status: This task is in progress</p>
+        <p class="text-info"> Task status: In progress </p>
         <% end %>
         <span><%= link "Edit", to: task_path(@conn, :edit, task) %></span>
       </div>
     </div>
   </div>
 </div>
+<br> <br>
 <% end %>

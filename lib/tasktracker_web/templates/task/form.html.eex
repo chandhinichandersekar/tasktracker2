@@ -13,25 +13,27 @@
 
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
+    <%= text_input f, :title, class: "form-control", placeholder: "enter a title" %>
     <%= error_tag f, :title %>
   </div>
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control", placeholder: "enter a description" %>
     <%= error_tag f, :body %>
   </div>
 
   <div class="form-group">
     <%= label f, :assigned, class: "control-label" %>
+    <!-- learnt the usage of select tag from (https://stackoverflow.com/questions/36698192/how-to-create-a-select-tag-with-options-and-values-from-a-separate-model-in-the)
+    and applied it in task tracker app accordingly -->
     <%= select f, :assigned, @assigned, class: "control-label" %>
     <%= error_tag f, :assigned %>
   </div>
 
   <div class="form-group">
     <%= label f, :time, class: "control-label" %>
-    <%= number_input f, :time, class: "form-control" , step: "15"%>
+    <%= number_input f, :time, class: "form-control" , step: "15", value: "0"%>
     <%= error_tag f, :time %>
   </div>
 

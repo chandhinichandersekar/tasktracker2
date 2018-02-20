@@ -4,7 +4,8 @@ defmodule TasktrackerWeb.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
-
+  
+#Referred from professor Nat Tuck's class and lecture notes
   def issues(conn, _params) do
   tasks = Tasktracker.Social.list_tasks()
   changeset = Tasktracker.Social.change_task(%Tasktracker.Social.Task{user_id: conn.assigns[:current_user].id})

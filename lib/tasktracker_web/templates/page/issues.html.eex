@@ -1,3 +1,4 @@
+<!--Referred from professor Nat Tuck's class and lecture notes -->
 <h1>Task Feed</h1>
 
 <%= Enum.map @tasks, fn task -> %>

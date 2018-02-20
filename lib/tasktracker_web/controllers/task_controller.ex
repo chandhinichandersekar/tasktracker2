@@ -6,10 +6,7 @@ defmodule TasktrackerWeb.TaskController do
 
   def index(conn, _params) do
     tasks = Social.list_tasks()
-    assigned = Tasktracker.Accounts.list_users()
-               |> Enum.map(&[&1.name])
-               |> Enum.concat()
-    render(conn, "index.html", tasks: tasks, assigned: assigned)
+    render(conn, "index.html", tasks: tasks)
   end
 
   def new(conn, _params) do
@@ -38,10 +35,7 @@ defmodule TasktrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Social.get_task!(id)
-    assigned = Tasktracker.Accounts.list_users()
-               |> Enum.map(&[&1.name])
-               |> Enum.concat()
-    render(conn, "show.html", task: task, assigned: assigned)
+    render(conn, "show.html", task: task)
   end
 
   def edit(conn, %{"id" => id}) do

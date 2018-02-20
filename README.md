@@ -50,6 +50,13 @@
      * This reassignment of tasks can be done by any registered user in the system.
      * Tasks that are completed can be switched back to in progress by any registered user, if one thinks there is more to be done in the task.
      * The title and description of tasks can also be updated by any registered user at anytime.
+     * The updated task appears as the last task on the Task feed page.
+
+  * Admin pages -
+     * This app is designed in such a way that deleting a user or a task is considered as admin only tasks, so the list of all the users page and list of all the tasks page is hidden for a normal user.
+     * These pages can be navigated by using `tasks1.chandhinichandersekar.com/users` and `tasks1.chandhinichandersekar.com/tasks`.
+     * Deleting a user deletes the tasks created by the user, as the user is no longer part of the system.
+     * Deleting a task just removes that task Off the system.
 
 To start your Phoenix server:
 

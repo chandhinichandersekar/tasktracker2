@@ -4,12 +4,36 @@ defmodule TasktrackerWeb.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
-  
+
 #Referred from professor Nat Tuck's class and lecture notes
   def issues(conn, _params) do
   tasks = Tasktracker.Social.list_tasks()
+          |> Enum.map(&{&1.assigned})
+  taskUserList = for  x <- tasks do Tuple.to_list(x) end
+  taskUserId = List.flatten(taskUserList)
+  taskUserId = for y <- taskUserId do String.to_integer(y) end
+
+  users = Tasktracker.Accounts.list_users()
+             |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
+  currentUserId = conn.assigns[:current_user].id
+  managedUsers = Enum.filter(users, fn(x) -> elem(x, 1) == currentUserId end)
+  managedUsersId = managedUsers |> Enum.map(&{elem(&1, 2)})
+  listManagedUserId = for  x <- managedUsersId do Tuple.to_list(x) end
+  listManagedUserId = List.flatten(listManagedUserId)
+
+  tempIdList = taskUserId -- listManagedUserId
+  newIdList = taskUserId -- tempIdList
+
+  managedTasks = Tasktracker.Social.list_tasks()
+                 |> Enum.filter(&(Enum.member?(newIdList, String.to_integer(&1.assigned))))
+
+
+  currentUserTask = Tasktracker.Social.list_tasks()
+                    |> Enum.filter(&(currentUserId == String.to_integer(&1.assigned)))
+
+  #tasks = Enum.reverse(Tasktracker.Social.feed_posts_for(conn.assigns[:current_user]))
   changeset = Tasktracker.Social.change_task(%Tasktracker.Social.Task{user_id: conn.assigns[:current_user].id})
-  render conn, "issues.html", tasks: tasks, changeset: changeset
+  render conn, "issues.html", managedTasks: managedTasks, changeset: changeset, currentUserTask: currentUserTask
 end
 
 end

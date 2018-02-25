@@ -1,7 +1,33 @@
 <!--Referred from professor Nat Tuck's class and lecture notes -->
+<a href="/users">All Users</a>
 <h1>Task Feed</h1>
 
-<%= Enum.map @tasks, fn task -> %>
+<%= Enum.map @managedTasks, fn task -> %>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Created by: <%= task.user.name %></h6>
+        <p>Title: <%= task.title %></p>
+        <p>Description: <%= task.body %></p>
+        <p>Assigned to: <%= task.assigned %></p>
+        <p class= "text-danger float-right">Time spent: <%= task.time %> minutes</p>
+        <%= if task.completed do %>
+        <p class="text-success">  Task status: Complete </p>
+        <% else %>
+        <p class="text-info"> Task status: In progress </p>
+        <% end %>
+        <span><%= link "Edit", to: task_path(@conn, :edit, task) %></span>
+      </div>
+    </div>
+  </div>
+</div>
+<br> <br>
+<% end %>
+
+<h1>Your Task Feed</h1>
+
+<%= Enum.map @currentUserTask, fn task -> %>
 <div class="row">
   <div class="col">
     <div class="card">

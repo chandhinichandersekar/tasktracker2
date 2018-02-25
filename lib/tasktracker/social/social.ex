@@ -22,6 +22,7 @@ defmodule Tasktracker.Social do
    |> Repo.preload(:user)
   end
 
+
   @doc """
   Gets a single task.
 

@@ -1,4 +1,4 @@
-<h2>User Details</h2>
+<h2>Show User</h2>
 
 <ul>
 
@@ -12,7 +12,12 @@
     <%= @user.name %>
   </li>
 
+  <li>
+    <strong>Manager:</strong>
+    <%= @managername %>
+  </li>
+
 </ul>
 
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span> <br>
-<span><%= link "Click here to login", to: page_path(@conn, :index) %></span>
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>

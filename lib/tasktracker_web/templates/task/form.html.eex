@@ -27,7 +27,7 @@
     <%= label f, :assigned, class: "control-label" %>
     <!-- learnt the usage of select tag from (https://stackoverflow.com/questions/36698192/how-to-create-a-select-tag-with-options-and-values-from-a-separate-model-in-the)
     and applied it in task tracker app accordingly -->
-    <%= select f, :assigned, @assigned, class: "control-label" %>
+    <%= select f, :assigned, @managedUsers, class: "control-label" %>
     <%= error_tag f, :assigned %>
   </div>
 

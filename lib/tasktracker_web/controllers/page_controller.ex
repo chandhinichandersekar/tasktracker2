@@ -8,10 +8,10 @@ defmodule TasktrackerWeb.PageController do
 #Referred from professor Nat Tuck's class and lecture notes
   def issues(conn, _params) do
   tasks = Tasktracker.Social.list_tasks()
-          |> Enum.map(&{&1.assigned})
+          |> Enum.map(&{&1.user_id})
   taskUserList = for  x <- tasks do Tuple.to_list(x) end
   taskUserId = List.flatten(taskUserList)
-  taskUserId = for y <- taskUserId do String.to_integer(y) end
+
   users = Tasktracker.Accounts.list_users()
              |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
   currentUserId = conn.assigns[:current_user].id
@@ -22,10 +22,10 @@ defmodule TasktrackerWeb.PageController do
   tempIdList = taskUserId -- listManagedUserId
   newIdList = taskUserId -- tempIdList
   managedTasks = Tasktracker.Social.list_tasks()
-                 |> Enum.filter(&(Enum.member?(newIdList, String.to_integer(&1.assigned))))
+                 |> Enum.filter(&(Enum.member?(newIdList, &1.user_id)))
 
   currentUserTask = Tasktracker.Social.list_tasks()
-                    |> Enum.filter(&(currentUserId == String.to_integer(&1.assigned)))
+                    |> Enum.filter(&(currentUserId == &1.user_id))
 
 
   #IO.inspect (managedTasks)

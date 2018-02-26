@@ -33,8 +33,13 @@ defmodule TasktrackerWeb.UserController do
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     manager_id = Map.get(user, :mamanager_id)
-    manager = Accounts.get_user!(manager_id)
-    managername = Map.get(manager, :name)
+    if(manager_id) do
+      manager = Accounts.get_user!(manager_id)
+      managername = Map.get(manager, :name)
+    else
+      managername = "No Manager"
+    end
+
     render(conn, "show.html", user: user, managername: managername)
   end
 

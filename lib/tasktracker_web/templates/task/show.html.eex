@@ -1,10 +1,10 @@
 <h2>Task Details</h2>
 
 <ul>
-  <li>
+  <!--<li>
     <strong>Created by:</strong>
     <%= @task.user.name %>
-  </li>
+  </li>-->
 
   <li>
     <strong>Title:</strong>
@@ -18,7 +18,7 @@
 
   <li>
     <strong>Assigned to:</strong>
-    <%= @assigneename %>
+    <%= @task.user.name %>
   </li>
 
   <li>

@@ -1,5 +1,14 @@
 <h2>Edit Task</h2>
-
+<script>
+ window.timeblock_path = "<%= timeblock_path(@conn, :index) %>";
+ window.task_id = "<%= @task.id %>";
+</script>
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
+
+<td>
+      <button class="time-button btn btn-primary"
+              data-task-id="<%= @task.id %>">
+        Timer
+      </button>
 
 <span><%= link "Back", to: "/issues" %></span>

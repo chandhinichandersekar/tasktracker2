@@ -18,7 +18,7 @@
 
   <li>
     <strong>Assigned to:</strong>
-    <%= @task.assigned %>
+    <%= @assigneename %>
   </li>
 
   <li>

@@ -31,6 +31,7 @@ defmodule TasktrackerWeb.Router do
     get "/", PageController, :index
     get "/issues", PageController, :issues
 
+
     resources "/users", UserController
     resources "/tasks", TaskController
 
@@ -39,7 +40,8 @@ defmodule TasktrackerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TasktrackerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", TasktrackerWeb do
+  pipe_through :api
+  resources "/timeblocks", TimeblockController, except: [:new, :edit]
+   end
 end

@@ -39,7 +39,10 @@ defmodule TasktrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Social.get_task!(id)
-    render(conn, "show.html", task: task)
+    assignee_id = Map.get(task, :assigned)
+    assignee = Tasktracker.Accounts.get_user!(assignee_id)
+    assigneename = Map.get(assignee, :name)
+    render(conn, "show.html", task: task, assigneename: assigneename)
   end
 
   def edit(conn, %{"id" => id}) do

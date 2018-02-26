@@ -18,10 +18,10 @@
        <div class="col-9 offset-9">
          <%= if @current_user do %>
            <p>
+               <span><%= link "Task Report", to: "/taskreport" %></span> |
             <span><%= link "Your Profile", to: user_path(@conn, :show, @current_user), class: "btn btn-default btn-xs" %></span> |
-             <span><%= link "NewTask", to: "/tasks/new" %></span> |
               <span><%= link "Feed", to: "/issues" %></span> <br>
-             Logged in as: <%= @current_user.name %> |
+             <span><%= link "NewTask", to: "/tasks/new" %></span> | Logged in as: <%= @current_user.name %> |
              <%= link "Log Out", to: "/session", method: :delete %>
            </p>
          <% else %>

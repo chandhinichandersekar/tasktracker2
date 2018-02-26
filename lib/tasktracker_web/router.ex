@@ -30,6 +30,7 @@ defmodule TasktrackerWeb.Router do
 
     get "/", PageController, :index
     get "/issues", PageController, :issues
+    get "/taskreport", PageController, :taskreport
 
 
     resources "/users", UserController

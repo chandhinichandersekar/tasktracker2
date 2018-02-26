@@ -16,9 +16,12 @@
     <strong>Manager:</strong>
     <%= @managername %>
   </li>
-  <li><strong> Underlings: </strong></li>
+  
+  <li>
+    <strong> Underlings: </strong>
+  </li>
   <%= Enum.map @listManagedUser, fn user -> %>
-  <ul>  <li><%= user %> </li> </ul>
+    <ul>  <li><%= user %> </li> </ul>
   <% end %>
 </ul>
 

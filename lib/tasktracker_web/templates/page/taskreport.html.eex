@@ -1,0 +1,26 @@
+<h1>Task Report</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Assigned to</th>
+      <th>Task status</th>
+    </tr>
+  </thead>
+<tbody>
+<%= for task <- @managedTasks do %>
+<tr>
+  <td><%= task.title %></td>
+  <td><%= task.body %></td>
+  <td><%= task.user.name %></td>
+  <%= if task.completed do %>
+  <td class="text-success">  Task status: Complete </td>
+  <% else %>
+  <td class="text-info"> Task status: In progress </td>
+  <% end %>
+  </tr>
+<% end %>
+</tbody>
+</table>

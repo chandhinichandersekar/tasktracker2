@@ -25,6 +25,7 @@
 <br> <br>
 <% end %>
 
+
 <h1>Your Task Feed</h1>
 
 <%= Enum.map @currentUserTask, fn task -> %>

@@ -64,9 +64,35 @@ import "phoenix_html"
     });
   }
 
+  function save_time_click(ev) {
+    let btn = $(ev.target);
+    let task_id = btn.data('task-id');
+    var start = new Date($('.start-time').val()).toISOString();
+    alert(start);
+    var end = new Date($('.end-time').val()).toISOString();
+    console.log("start working",start)
+    console.log("start working",end)
+    let text = JSON.stringify({
+      timeblock: {
+          timeblock_id: task_id,
+          start: start,
+          end: end
+        },
+    });
+
+    $.ajax(timeblock_path, {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: text,
+      success: (resp) => { console.log("sucees");},
+    });
+  }
+
 function init_time() {
   $(".start-button").click(start_click);
   $(".stop-button").click(stop_click);
+  $(".time-button").click(save_time_click);
 }
 
 $(init_time);

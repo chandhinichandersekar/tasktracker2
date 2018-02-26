@@ -57,7 +57,7 @@ defmodule TasktrackerWeb.TaskController do
     managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
     managedUsers = managedUsers |> Enum.map(&{elem(&1, 0), elem(&1, 2)})
   end
-    time = Tasktracker.Social.list_timeblocks()
+    time = Tasktracker.Social.timeblock_map_for(id)
     changeset = Social.change_task(task)
     render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time)
   end

@@ -125,6 +125,7 @@ defmodule Tasktracker.Social do
   """
   def list_timeblocks do
     Repo.all(Timeblock)
+    #|> Repo.preload(:task)
   end
 
   @doc """
@@ -206,5 +207,10 @@ defmodule Tasktracker.Social do
   """
   def change_timeblock(%Timeblock{} = timeblock) do
     Timeblock.changeset(timeblock, %{})
+  end
+
+  def timeblock_map_for(task_id) do
+    Repo.all(from f in Timeblock,
+      where: f.timeblock_id == ^task_id)
   end
 end

@@ -10,7 +10,6 @@ defmodule TasktrackerWeb.PageController do
           |> Enum.map(&{&1.user_id})
   taskUserList = for  x <- tasks do Tuple.to_list(x) end
   taskUserId = List.flatten(taskUserList)
-
   users = Tasktracker.Accounts.list_users()
              |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
   currentUserId = conn.assigns[:current_user].id
@@ -22,6 +21,7 @@ defmodule TasktrackerWeb.PageController do
   newIdList = taskUserId -- tempIdList
   managedTasks = Tasktracker.Social.list_tasks()
                  |> Enum.filter(&(Enum.member?(newIdList, &1.user_id)))
+  managedTasks = Enum.reverse(managedTasks)
   currentUserTask = Tasktracker.Social.list_tasks()
                     |> Enum.filter(&(currentUserId == &1.user_id))
   changeset = Tasktracker.Social.change_task(%Tasktracker.Social.Task{user_id: conn.assigns[:current_user].id})

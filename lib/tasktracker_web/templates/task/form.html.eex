@@ -23,6 +23,7 @@
     <%= error_tag f, :body %>
   </div>
 
+
   <div class="form-group">
     <%= label f, :assigned, class: "control-label" %>
     <!-- learnt the usage of select tag from (https://stackoverflow.com/questions/36698192/how-to-create-a-select-tag-with-options-and-values-from-a-separate-model-in-the)
@@ -37,11 +38,30 @@
     <%= error_tag f, :time %>
   </div>
 
+  <strong> <p> Time Blocks </p> </strong>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>start time</th>
+        <th>end time</th>
+      </tr>
+    </thead>
+  <tbody>
+  <%= for t <- @time do %>
+  <tr>
+    <td><%= t.start %></td>
+    <td><%= t.end %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+
   <div class="form-group">
     <%= label f, :completed, class: "control-label" %>
     <%= checkbox f, :completed, class: "checkbox" %>
     <%= error_tag f, :completed %>
   </div>
+
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

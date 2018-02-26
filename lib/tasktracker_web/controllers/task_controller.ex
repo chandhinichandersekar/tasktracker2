@@ -18,11 +18,13 @@ defmodule TasktrackerWeb.TaskController do
                |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
     managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
     managedUsers = managedUsers |> Enum.map(&{elem(&1, 0), elem(&1, 2)})
-    render(conn, "new.html", changeset: changeset, managedUsers: managedUsers)
+    time = Tasktracker.Social.list_timeblocks()
+    render(conn, "new.html", changeset: changeset, managedUsers: managedUsers, time: time)
   end
 
   def create(conn, %{"task" => task_params}) do
     currentUserId = conn.assigns[:current_user].id
+    time = Tasktracker.Social.list_timeblocks()
     assigned = Tasktracker.Accounts.list_users()
                |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
     managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
@@ -33,7 +35,7 @@ defmodule TasktrackerWeb.TaskController do
         |> put_flash(:info, "Task created successfully.")
         |> redirect(to: "/issues")
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset, managedUsers: managedUsers)
+        render(conn, "new.html", changeset: changeset, managedUsers: managedUsers, time: time)
     end
   end
 
@@ -44,18 +46,25 @@ defmodule TasktrackerWeb.TaskController do
 
   def edit(conn, %{"id" => id}) do
     currentUserId = conn.assigns[:current_user].id
+    currentUserName = conn.assigns[:current_user].name
+    tupleCurrentUser = [{currentUserName, Integer.to_string(currentUserId)}]
     task = Social.get_task!(id)
     assigned = Tasktracker.Accounts.list_users()
                |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
+    if (task.user_id == currentUserId) do
+      managedUsers = tupleCurrentUser
+    else
     managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
     managedUsers = managedUsers |> Enum.map(&{elem(&1, 0), elem(&1, 2)})
+  end
+    time = Tasktracker.Social.list_timeblocks()
     changeset = Social.change_task(task)
-
-    render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers)
+    render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     currentUserId = conn.assigns[:current_user].id
+    time = Tasktracker.Social.list_timeblocks()
     task = Social.get_task!(id)
     assigned = Tasktracker.Accounts.list_users()
                |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
@@ -67,7 +76,7 @@ defmodule TasktrackerWeb.TaskController do
         |> put_flash(:info, "Task updated successfully.")
         |> redirect(to: task_path(conn, :show, task))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers)
+        render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time)
     end
   end
 

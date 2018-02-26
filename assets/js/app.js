@@ -19,18 +19,13 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+  var timeblock;
 
-
-
-function time_click(ev) {
-  let btn = $(ev.target);
-  let task_id = btn.data('task-id');
-  let start_working = btn.data('start-working');
-  let stop_working = btn.data('stop-working');
-  var dt = new Date();
-  var ts = Math.round((new Date()).getTime() / 1000);
-  var dateTime = new Date().toLocaleString();
-
+  function start_click(ev) {
+    let btn = $(ev.target);
+    let task_id = btn.data('task-id');
+    var start_working = btn.data('start-time');
+    console.log("start working",start_working)
     let text = JSON.stringify({
       timeblock: {
           timeblock_id: task_id,
@@ -43,18 +38,35 @@ function time_click(ev) {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: stop_text,
-      success: (resp) => { console.log(resp.data.id); },
+      data: text,
+      success: (resp) => { timeblock = resp.data.id;},
     });
+  }
 
-}
+    function stop_click(ev) {
+      console.log(timeblock);
+      let btn = $(ev.target);
+      let task_id = btn.data('task-id');
+      var stop_working = btn.data('stop-time');
+      console.log("stop working",stop_working)
+      let text = JSON.stringify({
+        timeblock: {
+            end: stop_working
+          },
+      });
 
+      $.ajax(timeblock_path + "/" + timeblock, {
+      method: "patch",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: text,
+      success: (resp) => {console.log("stop timer"); },
+    });
+  }
 
 function init_time() {
-
-
-  $(".time-button").click(time_click);
-
+  $(".start-button").click(start_click);
+  $(".stop-button").click(stop_click);
 }
 
 $(init_time);

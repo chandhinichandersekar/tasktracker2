@@ -5,7 +5,11 @@
 </script>
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
 
-  <button class="time-button btn btn-primary" data-task-id="<%= @task.id %>" data-start-working="<%= DateTime.utc_now() %>">  start working </button>
-  <button class="time-button btn btn-primary" data-task-id="<%= @task.id %>" data-stop-working="<%= DateTime.utc_now() %>">  stop working </button>
+  <button class="start-button btn btn-primary" data-task-id="<%= @task.id %>"
+    data-start-time="<%= DateTime.utc_now() %>">start working</button>
+
+    <button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
+      data-stop-time="<%= DateTime.utc_now() %>">stop working</button>
+
 
 <span><%= link "Back", to: "/issues" %></span>

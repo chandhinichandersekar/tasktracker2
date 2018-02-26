@@ -16,7 +16,7 @@
     <strong>Manager:</strong>
     <%= @managername %>
   </li>
-  
+
   <li>
     <strong> Underlings: </strong>
   </li>

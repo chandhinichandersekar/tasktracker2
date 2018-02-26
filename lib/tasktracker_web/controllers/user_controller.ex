@@ -32,6 +32,13 @@ defmodule TasktrackerWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
+    currentUserId = conn.assigns[:current_user].id
+    assigned = Tasktracker.Accounts.list_users()
+               |> Enum.map(&{&1.name, &1.mamanager_id, &1.id})
+    managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
+    managedUsers = managedUsers |> Enum.map(&{elem(&1, 0)})
+    listManagedUser = for  x <- managedUsers do Tuple.to_list(x) end
+    listManagedUser = List.flatten(listManagedUser)
     manager_id = Map.get(user, :mamanager_id)
     if(manager_id) do
       manager = Accounts.get_user!(manager_id)
@@ -40,7 +47,7 @@ defmodule TasktrackerWeb.UserController do
       managername = "No Manager"
     end
 
-    render(conn, "show.html", user: user, managername: managername)
+    render(conn, "show.html", user: user, managername: managername, listManagedUser: listManagedUser)
   end
 
   def edit(conn, %{"id" => id}) do

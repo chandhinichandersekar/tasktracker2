@@ -16,8 +16,12 @@
     <strong>Manager:</strong>
     <%= @managername %>
   </li>
-
+  <li><strong> Underlings: </strong></li>
+  <%= Enum.map @listManagedUser, fn user -> %>
+  <ul>  <li><%= user %> </li> </ul>
+  <% end %>
 </ul>
 
+
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<span><%= link "Back", to: page_path(@conn, :issues) %></span>

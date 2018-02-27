@@ -12,6 +12,7 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.user.name %></p>
+        <p class= "text-danger float-right">Time spent: <span><%= link "Click here to view edit timestamps", to: task_path(@conn, :edit, task) %></span> </p>
         <%= if task.completed do %>
         <p class="text-success">  Task status: Complete </p>
         <% else %>
@@ -37,6 +38,7 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.user.name %></p>
+                <p class= "text-danger float-right">Time spent: <span><%= link "Click here to view edit timestamps", to: task_path(@conn, :edit, task) %></span> </p>
         <%= if task.completed do %>
         <p class="text-success">  Task status: Complete </p>
         <% else %>

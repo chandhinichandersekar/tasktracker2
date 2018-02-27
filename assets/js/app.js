@@ -89,10 +89,24 @@ import "phoenix_html"
     });
   }
 
+  function delete_time_block(ev) {
+    let btn = $(ev.target);
+    //let task_id = btn.data('task-id');
+    var timeblock_id = btn.data('block-id');
+  $.ajax(timeblock_path + "/" + timeblock_id, {
+    method: "delete",
+    dataType: "json",
+    contentType: "application/json; charset=UTF-8",
+    data: "",
+    success: () => { console.log("deleted"); },
+  });
+}
+
 function init_time() {
   $(".start-button").click(start_click);
   $(".stop-button").click(stop_click);
   $(".time-button").click(save_time_click);
+  $(".delete-button").click(delete_time_block);
 }
 
 $(init_time);

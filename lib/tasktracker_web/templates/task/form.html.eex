@@ -65,6 +65,8 @@
   <td><%= t.start %></td>
   <td><%= t.end %></td>
   <td><%= t.id %></td>
+  <td><button class="edit-button btn btn-primary" data-task-id="<%= @task.id %>"
+    data-block-id="<%= t.id %>" data-start-id="<%= t.start %>" data-end-id="<%= t.end %>">edit</button></td>
   <td><button class="delete-button btn btn-danger" data-task-id="<%= @task.id %>"
     data-block-id="<%= t.id %>">delete</button></td>
   </tr>
@@ -77,3 +79,11 @@
 <label> end time </label> <input id="end-time" type="datetime-local" class="end-time"> <br> <br>
 
 <button class="time-button btn btn-primary" data-task-id="<%= @task.id %>">save time</button> <br> <br>
+
+<div id="dialog" title="Basic dialog">
+    <p>Dialog box</p>
+
+    <label> start time </label> <input id="edit-start-time" type="datetime-local" class="start-time">
+
+    <label> end time </label> <input id="edit-end-time" type="datetime-local" class="end-time"> <br> <br>
+</div>

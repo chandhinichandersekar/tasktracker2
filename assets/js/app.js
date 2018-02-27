@@ -89,6 +89,33 @@ import "phoenix_html"
     });
   }
 
+  function edit_time_click(ev) {
+    $('#dialog').show();
+    let btn = $(ev.target);
+    let task_id = btn.data('task-id');
+    var start = btn.data('start-id');
+    var end = btn.data('end-id');
+    alert(start);
+    //var end = $('.end-time').val();
+    console.log("start working",start)
+    console.log("start working",end)
+    let text = JSON.stringify({
+      timeblock: {
+          timeblock_id: task_id,
+          start: start,
+          end: end
+        },
+    });
+
+    $.ajax(timeblock_path, {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: text,
+      success: (resp) => { console.log("sucees");},
+    });
+  }
+
   function delete_time_block(ev) {
     let btn = $(ev.target);
     //let task_id = btn.data('task-id');
@@ -103,10 +130,12 @@ import "phoenix_html"
 }
 
 function init_time() {
+  $("#dialog").hide();
   $(".start-button").click(start_click);
   $(".stop-button").click(stop_click);
   $(".time-button").click(save_time_click);
   $(".delete-button").click(delete_time_block);
+  $(".edit-button").click(edit_time_click);
 }
 
 $(init_time);

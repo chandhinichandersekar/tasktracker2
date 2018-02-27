@@ -6,10 +6,10 @@
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
 
   <button class="start-button btn btn-primary" data-task-id="<%= @task.id %>"
-    data-start-time="<%= DateTime.utc_now() %>">start working</button>
+    data-start-time="<%= @currentTime %>">start working</button>
 
     <button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
-      data-stop-time="<%= DateTime.utc_now() %>">stop working</button>
+      data-stop-time="<%= @currentTime %>">stop working</button>
 
 
 <span><%= link "Back", to: "/issues" %></span>

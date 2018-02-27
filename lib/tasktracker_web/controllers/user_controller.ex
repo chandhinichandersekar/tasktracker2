@@ -6,7 +6,6 @@
 
 defmodule TasktrackerWeb.UserController do
   use TasktrackerWeb, :controller
-  import Ecto.Query
   alias Tasktracker.Accounts
   alias Tasktracker.Accounts.User
 

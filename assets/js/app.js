@@ -66,22 +66,17 @@ import "phoenix_html"
   }
 
   function edit_time_click(ev) {
-    $('#dialog').show();
+    $('#edittime').show();
     let btn = $(ev.target);
     var timeblock_id = btn.data('block-id');
-    //console.log(timeblock_id)
-    let task_id = btn.data('task-id');
     $(".save-edit-button").click(save_edit_time_click);
    function save_edit_time_click(ev) {
-     //console.log(timeblock_id)
      //referred this url for time conversion, https://www.w3schools.com/jsref/jsref_toisostring.asp
      let btn = $(ev.target);
-     let task_id = btn.data('task-id');
      var start = new Date($('.edit-start-time').val()).toISOString();
      var end = new Date($('.edit-end-time').val()).toISOString();
      let text = JSON.stringify({
        timeblock: {
-         timeblock_id: task_id,
          start: start,
          end: end
          },
@@ -134,7 +129,7 @@ import "phoenix_html"
 }
 
 function init_time() {
-  $("#dialog").hide();
+  $("#edittime").hide();
   $(".start-button").click(start_click);
   $(".stop-button").click(stop_click);
   $(".time-button").click(save_time_click);

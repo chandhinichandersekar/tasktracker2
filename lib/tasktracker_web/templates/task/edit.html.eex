@@ -23,17 +23,15 @@ http://www.ccs.neu.edu/home/ntuck/courses/2018/01/cs4550/notes/14-assoc-and-ajax
 <tr>
   <td><%= t.start %></td>
   <td><%= t.end %></td>
-  <td><button class="edit-button btn btn-primary" data-task-id="<%= @task.id %>"
-    data-block-id="<%= t.id %>">edit</button></td>
-    <td><button class="save-edit-button btn btn-primary" data-task-id="<%= @task.id %>" data-block-id="<%= t.id %>">save edited time</button></td>
-  <td><button class="delete-button btn btn-danger" data-task-id="<%= @task.id %>"
-    data-block-id="<%= t.id %>">delete</button></td>
+  <td><button class="edit-button btn btn-primary" data-block-id="<%= t.id %>">edit</button></td>
+    <td><button class="save-edit-button btn btn-primary" data-block-id="<%= t.id %>">save edited time</button></td>
+  <td><button class="delete-button btn btn-danger" data-block-id="<%= t.id %>">delete</button></td>
   </tr>
 <% end %>
 </tbody>
 </table>
 
-<div id="dialog" title="Basic dialog">
+<div id="edittime" title="Edit Time">
     <p>Edit Timestamp: </p>
 
     <label> start time </label> <input id="edit-start-time" type="datetime-local" class="edit-start-time">

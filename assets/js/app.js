@@ -63,6 +63,7 @@ import "phoenix_html"
       data: text,
       success: (resp) => {console.log("stop timer"); },
     });
+    location.reload(true);
   }
 
   function edit_time_click(ev) {
@@ -89,6 +90,7 @@ import "phoenix_html"
      data: text,
      success: (resp) => {console.log("stop timer"); },
    });
+   location.reload(true);
  }
 }
 
@@ -114,6 +116,7 @@ import "phoenix_html"
       data: text,
       success: (resp) => { console.log("success");},
     });
+    location.reload(true);
   }
 
   function delete_time_block(ev) {
@@ -126,6 +129,7 @@ import "phoenix_html"
     data: "",
     success: () => { console.log("deleted"); },
   });
+  location.reload(true);
 }
 
 function init_time() {
@@ -135,7 +139,6 @@ function init_time() {
   $(".time-button").click(save_time_click);
   $(".delete-button").click(delete_time_block);
   $(".edit-button").click(edit_time_click);
-
 }
 
 $(init_time);

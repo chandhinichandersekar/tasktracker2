@@ -208,7 +208,7 @@ defmodule Tasktracker.Social do
   def change_timeblock(%Timeblock{} = timeblock) do
     Timeblock.changeset(timeblock, %{})
   end
-
+#referred from professor Nat Tuck's lecture and notes http://www.ccs.neu.edu/home/ntuck/courses/2018/01/cs4550/notes/14-assoc-and-ajax/notes.html
   def timeblock_map_for(task_id) do
     Repo.all(from f in Timeblock,
       where: f.timeblock_id == ^task_id)

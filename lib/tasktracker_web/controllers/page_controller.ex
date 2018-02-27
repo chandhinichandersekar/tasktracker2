@@ -1,3 +1,9 @@
+#References for this file
+#https://elixirschool.com/en/lessons/basics/enum/
+#https://hexdocs.pm/elixir/Enum.html
+#http://elixir-recipes.github.io/collections/filtering-collections/
+#https://elixir-lang.org/getting-started/enumerables-and-streams.html
+
 defmodule TasktrackerWeb.PageController do
   use TasktrackerWeb, :controller
 

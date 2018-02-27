@@ -1,3 +1,9 @@
+#References for this file
+#https://elixirschool.com/en/lessons/basics/enum/
+#https://hexdocs.pm/elixir/Enum.html
+#http://elixir-recipes.github.io/collections/filtering-collections/
+#https://elixir-lang.org/getting-started/enumerables-and-streams.html
+
 defmodule TasktrackerWeb.TaskController do
   use TasktrackerWeb, :controller
 
@@ -56,7 +62,7 @@ defmodule TasktrackerWeb.TaskController do
     else
     managedUsers = Enum.filter(assigned, fn(x) -> elem(x, 1) == currentUserId end)
     managedUsers = managedUsers |> Enum.map(&{elem(&1, 0), elem(&1, 2)})
-  end
+    end
     time = Tasktracker.Social.timeblock_map_for(id)
     changeset = Social.change_task(task)
     render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time)

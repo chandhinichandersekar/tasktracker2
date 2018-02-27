@@ -19,6 +19,7 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+//the below file was referred from professor Nat Tuck's lecture and notes http://www.ccs.neu.edu/home/ntuck/courses/2018/01/cs4550/notes/14-assoc-and-ajax/notes.html
   var timeblock;
 
   function start_click(ev) {
@@ -73,6 +74,7 @@ import "phoenix_html"
     $(".save-edit-button").click(save_edit_time_click);
    function save_edit_time_click(ev) {
      //console.log(timeblock_id)
+     //referred this url for time conversion, https://www.w3schools.com/jsref/jsref_toisostring.asp
      let btn = $(ev.target);
      let task_id = btn.data('task-id');
      var start = new Date($('.edit-start-time').val()).toISOString();
@@ -95,11 +97,12 @@ import "phoenix_html"
  }
 }
 
+//referred this url for time conversion, https://www.w3schools.com/jsref/jsref_toisostring.asp
   function save_time_click(ev) {
     let btn = $(ev.target);
     let task_id = btn.data('task-id');
     var start = new Date($('.start-time').val()).toISOString();
-    alert(start);
+    //alert(start);
     var end = new Date($('.end-time').val()).toISOString();
     let text = JSON.stringify({
       timeblock: {
@@ -114,12 +117,9 @@ import "phoenix_html"
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: text,
-      success: (resp) => { console.log("sucees");},
+      success: (resp) => { console.log("success");},
     });
   }
-
-
-
 
   function delete_time_block(ev) {
     let btn = $(ev.target);

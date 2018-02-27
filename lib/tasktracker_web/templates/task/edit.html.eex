@@ -5,7 +5,8 @@
 </script>
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
 
-
+<!--Learnt the usage of data properties in html from prof Nat Tuck's notes and lecture
+http://www.ccs.neu.edu/home/ntuck/courses/2018/01/cs4550/notes/14-assoc-and-ajax/notes.html-->
 <label> Time Blocks </label>
 <table class="table">
   <thead>
@@ -40,20 +41,20 @@
     <label> end time </label> <input id="edit-end-time" type="datetime-local" class="edit-end-time"> <br> <br>
 
 </div>  <br> <br>
+  <!-- referred the usage of datetime-local from https://www.w3schools.com/jsref/dom_obj_datetime-local.asp and applied it accordingly -->
+  <label> Enter Time spent Manually: </label> <br>
+  <label> start time </label> <input id="start-time" type="datetime-local" class="start-time">
+  <label> end time </label> <input id="end-time" type="datetime-local" class="end-time"> <br> <br>
 
-<label> Enter Time spent Manually: </label> <br>
-<label> start time </label> <input id="start-time" type="datetime-local" class="start-time">
+  <button class="time-button btn btn-primary" data-task-id="<%= @task.id %>">save time</button> <br> <br>
 
-<label> end time </label> <input id="end-time" type="datetime-local" class="end-time"> <br> <br>
-
-<button class="time-button btn btn-primary" data-task-id="<%= @task.id %>">save time</button> <br> <br>
-
-<label> Automatic Timer: </label> <br>
+  <label> Automatic Timer: </label> <br>
+  <!--Referred the usage of DateTime.utc_now() from the documentation url https://hexdocs.pm/elixir/DateTime.html-->
   <button class="start-button btn btn-primary" data-task-id="<%= @task.id %>"
     data-start-time="<%= DateTime.utc_now() %>">start working</button>
 
-    <button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
-      data-stop-time="<%= DateTime.utc_now() %>">stop working</button> <br> <br>
+  <button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
+    data-stop-time="<%= DateTime.utc_now() %>">stop working</button> <br> <br>
 
 
 

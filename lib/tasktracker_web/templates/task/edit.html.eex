@@ -12,6 +12,9 @@
     <tr>
       <th>start time</th>
       <th>end time</th>
+      <th>edit time</th>
+      <th>save edited time</th>
+      <th>delete time</th>
     </tr>
   </thead>
 <tbody>
@@ -19,10 +22,9 @@
 <tr>
   <td><%= t.start %></td>
   <td><%= t.end %></td>
-  <td><%= t.id %></td>
   <td><button class="edit-button btn btn-primary" data-task-id="<%= @task.id %>"
     data-block-id="<%= t.id %>">edit</button></td>
-    <td><button class="save-edit-button btn btn-primary" data-task-id="<%= @task.id %>" data-block-id="<%= t.id %>">save time</button></td>
+    <td><button class="save-edit-button btn btn-primary" data-task-id="<%= @task.id %>" data-block-id="<%= t.id %>">save edited time</button></td>
   <td><button class="delete-button btn btn-danger" data-task-id="<%= @task.id %>"
     data-block-id="<%= t.id %>">delete</button></td>
   </tr>

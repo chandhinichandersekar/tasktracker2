@@ -1,5 +1,6 @@
 <!--Referred from professor Nat Tuck's class and lecture notes -->
-<a href="/users">All Users</a>
+<a href="/users">All Users</a> |
+<a href="/users/new"> Create New User </a>
 <h1>Task Feed</h1>
 
 <%= Enum.map @managedTasks, fn task -> %>
@@ -11,7 +12,6 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.user.name %></p>
-        <p class= "text-danger float-right">Time spent: <%= task.time %> minutes</p>
         <%= if task.completed do %>
         <p class="text-success">  Task status: Complete </p>
         <% else %>
@@ -37,7 +37,6 @@
         <p>Title: <%= task.title %></p>
         <p>Description: <%= task.body %></p>
         <p>Assigned to: <%= task.user.name %></p>
-        <p class= "text-danger float-right">Time spent: <%= task.time %> minutes</p>
         <%= if task.completed do %>
         <p class="text-success">  Task status: Complete </p>
         <% else %>

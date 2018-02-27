@@ -25,7 +25,7 @@ import "phoenix_html"
     let btn = $(ev.target);
     let task_id = btn.data('task-id');
     var start_working = btn.data('start-time');
-    console.log("start working",start_working)
+    //console.log("start working",start_working)
     let text = JSON.stringify({
       timeblock: {
           timeblock_id: task_id,
@@ -44,11 +44,11 @@ import "phoenix_html"
   }
 
     function stop_click(ev) {
-      console.log(timeblock);
+      //console.log(timeblock);
       let btn = $(ev.target);
       let task_id = btn.data('task-id');
       var stop_working = btn.data('stop-time');
-      console.log("stop working",stop_working)
+      //console.log("stop working",stop_working)
       let text = JSON.stringify({
         timeblock: {
             end: stop_working
@@ -68,11 +68,11 @@ import "phoenix_html"
     $('#dialog').show();
     let btn = $(ev.target);
     var timeblock_id = btn.data('block-id');
-    console.log(timeblock_id)
+    //console.log(timeblock_id)
     let task_id = btn.data('task-id');
     $(".save-edit-button").click(save_edit_time_click);
    function save_edit_time_click(ev) {
-     console.log(timeblock_id)
+     //console.log(timeblock_id)
      let btn = $(ev.target);
      let task_id = btn.data('task-id');
      var start = new Date($('.edit-start-time').val()).toISOString();
@@ -101,8 +101,6 @@ import "phoenix_html"
     var start = new Date($('.start-time').val()).toISOString();
     alert(start);
     var end = new Date($('.end-time').val()).toISOString();
-    console.log("start working",start)
-    console.log("start working",end)
     let text = JSON.stringify({
       timeblock: {
           timeblock_id: task_id,
@@ -125,7 +123,6 @@ import "phoenix_html"
 
   function delete_time_block(ev) {
     let btn = $(ev.target);
-    //let task_id = btn.data('task-id');
     var timeblock_id = btn.data('block-id');
   $.ajax(timeblock_path + "/" + timeblock_id, {
     method: "delete",

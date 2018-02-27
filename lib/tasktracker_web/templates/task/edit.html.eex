@@ -5,11 +5,54 @@
 </script>
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
 
+
+<label> Time Blocks </label>
+<table class="table">
+  <thead>
+    <tr>
+      <th>start time</th>
+      <th>end time</th>
+    </tr>
+  </thead>
+<tbody>
+<%= for t <- @time do %>
+<tr>
+  <td><%= t.start %></td>
+  <td><%= t.end %></td>
+  <td><%= t.id %></td>
+  <td><button class="edit-button btn btn-primary" data-task-id="<%= @task.id %>"
+    data-block-id="<%= t.id %>">edit</button></td>
+    <td><button class="save-edit-button btn btn-primary" data-task-id="<%= @task.id %>" data-block-id="<%= t.id %>">save time</button></td>
+  <td><button class="delete-button btn btn-danger" data-task-id="<%= @task.id %>"
+    data-block-id="<%= t.id %>">delete</button></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<div id="dialog" title="Basic dialog">
+    <p>Edit Timestamp: </p>
+
+    <label> start time </label> <input id="edit-start-time" type="datetime-local" class="edit-start-time">
+
+    <label> end time </label> <input id="edit-end-time" type="datetime-local" class="edit-end-time"> <br> <br>
+
+</div>  <br> <br>
+
+<label> Enter Time spent Manually: </label> <br>
+<label> start time </label> <input id="start-time" type="datetime-local" class="start-time">
+
+<label> end time </label> <input id="end-time" type="datetime-local" class="end-time"> <br> <br>
+
+<button class="time-button btn btn-primary" data-task-id="<%= @task.id %>">save time</button> <br> <br>
+
+<label> Automatic Timer: </label> <br>
   <button class="start-button btn btn-primary" data-task-id="<%= @task.id %>"
-    data-start-time="<%= @currentTime %>">start working</button>
+    data-start-time="<%= DateTime.utc_now() %>">start working</button>
 
     <button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
-      data-stop-time="<%= @currentTime %>">stop working</button>
+      data-stop-time="<%= DateTime.utc_now() %>">stop working</button> <br> <br>
+
 
 
 <span><%= link "Back", to: "/issues" %></span>

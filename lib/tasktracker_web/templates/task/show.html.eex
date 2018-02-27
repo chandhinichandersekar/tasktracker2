@@ -21,10 +21,6 @@
     <%= @task.user.name %>
   </li>
 
-  <li>
-    <strong>Time spent:</strong>
-    <%= @task.time %> minutes
-  </li>
 
   <li>
     <strong>Task status:</strong>

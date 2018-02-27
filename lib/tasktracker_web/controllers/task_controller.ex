@@ -59,8 +59,7 @@ defmodule TasktrackerWeb.TaskController do
   end
     time = Tasktracker.Social.timeblock_map_for(id)
     changeset = Social.change_task(task)
-    currentTime = DateTime.utc_now()
-    render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time, currentTime: currentTime)
+    render(conn, "edit.html", task: task, changeset: changeset, managedUsers: managedUsers, time: time)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do

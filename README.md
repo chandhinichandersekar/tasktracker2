@@ -42,7 +42,7 @@
         * Links on this page:
            * Create new user - this navigates the user to the page `tasks2.chandhinichandersekar.com/users/new`.
            * The current user can register a new user from here.
-           * After successful registration, the user is navigated back to the login screen, where the user can either logout and login as the newly created user or can navigate back to any of the other pages by clicking on the links on the top right of the page.
+           * After successful registration, the user is navigated back to the login screen, where the user can either logout and login as the newly created user or as the current user, can navigate back to any of the other pages by clicking on the links on the top right of the page.
 
            * Task Report - this navigates the user to the page `tasks2.chandhinichandersekar.com/taskreport`
            * This page displays a table which allows the user to see the task report of all his underlings.

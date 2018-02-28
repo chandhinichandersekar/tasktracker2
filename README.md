@@ -60,10 +60,10 @@
      * If the user does not have any underlings he cannot create any new tasks.
      * Only a user's manager can assign him a task and a user can assign tasks only to his underlings.
      * The completed field is a boolean, and is used to indicate if a task is in progress or is completed.
-     * Edit - any created task can be edited by any user registered in the system.
+     * Edit - a created task can be edited by the user to whom the task is assigned to or by the manager of that user.
      * A task can be edited by clicking on the edit link present in each task on the task feed page.
      * This navigates the user to a edit task page `tasks1.chandhinichandersekar.com/tasks/task_id/edit`.
-     * Tasks can be reassigned to another user at any time.
+     * Tasks can be reassigned to a different underling at any time.
      * This reassignment of tasks can be done only by the user's manager.
      * Tasks that are completed can be switched back to in progress by the user or the manager of the user, if one thinks there is more to be done in the task.
      * The title and description of tasks can also be updated by the user or the manager of the user at anytime.
@@ -84,7 +84,7 @@
      * The user can enter a new value here and click on save edited timestamp of the respective time block row to see the updated value of the time   block.
      * Delete - the user can delete an already created time block.
      * Clicking on the delete button of a particular time block deletes it.
-     * There is link on the task feec page called, 'Click here to view edit timestamps' which also navigates the user to the edit task page.
+     * There is link on the task feed page called, 'Click here to view edit timestamps' which also navigates the user to the edit task page.
      * All the time blocks of any particular task can be seen on the edit task page of that task.
 
   * Admin pages -

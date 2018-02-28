@@ -39,7 +39,7 @@
      * The user can also edit the tasks that are assigned to him and his underlings.
      * This page also has links to create a new task, edit tasks, create new user, task report, your profile and logout.
      * At any point of time the user can come back to the feed page by clicking on the feed link on the top right of the page.
-       ### Links on this page:
+        * Links on this page:
            * Create new user - this navigates the user to the page `tasks2.chandhinichandersekar.com/users/new`.
            * The current user can register a new user from here.
            * After successful registration, the user is navigated back to the login screen, where the user can either logout and login as the newly created user or can navigate back to any of the other pages by clicking on the links on the top right of the page.
